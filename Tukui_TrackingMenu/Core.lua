@@ -88,10 +88,12 @@ function AddOn:Initialize()
 		return strcmputf8i(lh.text, rh.text) < 0
 	end)
 
-	MiniMapTrackingFrame:HookScript("OnHide", MiniMapTrackingFrame.Show)	
-	MiniMapTrackingFrame:Show()
+	MiniMapTrackingFrame:HookScript("OnHide", function()
+		AddOn:ShowIcon()
+	end)
 
 	self:UpdateIcon()
+	self:ShowIcon()
 end
 
 function AddOn:OnButtonClick()
@@ -124,6 +126,19 @@ end
 function AddOn:UpdateIcon()
 	if GetTrackingTexture() == nil then
 		MiniMapTrackingIcon:SetTexture("Interface\\PaperDollInfoFrame\\UI-GearManager-LeaveItem-Transparent.blp")
+	end
+end
+
+function AddOn:ShowIcon()
+	local HasTrackingSpells = false
+	for i = 1, #Constants.TrackingSpells do
+		if IsPlayerSpell(Constants.TrackingSpells[i]) then
+			HasTrackingSpells = true
+			break
+		end
+	end
+	if HasTrackingSpells then
+		MiniMapTrackingFrame:Show()
 	end
 end
 
