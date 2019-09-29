@@ -33,7 +33,7 @@ Warlock:
 - Sense Demons
 
 Paladin:
-- Sense Undead (Paladin)
+- Sense Undead
 
 Racials:
 - Find Treasure
