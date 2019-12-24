@@ -63,9 +63,12 @@ function AddOn:Initialize()
 	end)
 
 	self.Button:RegisterEvent("MINIMAP_UPDATE_TRACKING")
+	self.Button:RegisterEvent("LEARNED_SPELL_IN_TAB")
 	self.Button:SetScript("OnEvent", function(_, event)
 		if event == "MINIMAP_UPDATE_TRACKING" then
 			AddOn:UpdateIcon()
+		elseif event == "LEARNED_SPELL_IN_TAB" then
+			AddOn:ShowIcon()
 		end
 	end)
 
