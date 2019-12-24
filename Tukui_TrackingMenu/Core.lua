@@ -124,8 +124,11 @@ function AddOn:CancelTracking()
 end
 
 function AddOn:UpdateIcon()
-	if GetTrackingTexture() == nil then
+	local TrackingTexture = GetTrackingTexture()
+	if TrackingTexture == nil then
 		MiniMapTrackingIcon:SetTexture("Interface\\PaperDollInfoFrame\\UI-GearManager-LeaveItem-Transparent.blp")
+	else
+		MiniMapTrackingIcon:SetTexture(TrackingTexture)
 	end
 end
 
