@@ -63,9 +63,12 @@ function AddOn:Initialize()
 	end)
 
 	self.Button:RegisterEvent("MINIMAP_UPDATE_TRACKING")
+	self.Button:RegisterEvent("LEARNED_SPELL_IN_TAB")
 	self.Button:SetScript("OnEvent", function(_, event)
 		if event == "MINIMAP_UPDATE_TRACKING" then
 			AddOn:UpdateIcon()
+		elseif event == "LEARNED_SPELL_IN_TAB" then
+			AddOn:ShowIcon()
 		end
 	end)
 
@@ -124,8 +127,11 @@ function AddOn:CancelTracking()
 end
 
 function AddOn:UpdateIcon()
-	if GetTrackingTexture() == nil then
+	local TrackingTexture = GetTrackingTexture()
+	if TrackingTexture == nil then
 		MiniMapTrackingIcon:SetTexture("Interface\\PaperDollInfoFrame\\UI-GearManager-LeaveItem-Transparent.blp")
+	else
+		MiniMapTrackingIcon:SetTexture(TrackingTexture)
 	end
 end
 
